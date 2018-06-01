@@ -1,28 +1,43 @@
-<!doctype html>
-<html ng-app="todoApp">
-  <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
-    <script src="grocery.js"></script>
-    <link rel="stylesheet" href="todo.css">
-  </head>
-  <body>
-    <h2>Todo</h2>
-    <div ng-controller="TodoListController as todoList">
-      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-      <a href='#' ng-click="todoList.archive()">X</a>
-      <ul class="unstyled">
-        <li ng-repeat="todo in todoList.todos">
-          <label for="todos">
-            <input type="checkbox" ng-model="todo.done">
-            <span class="done-{{todo.done}}">{{todo.text}}</span>
-          </label>
-        </li>
-      </ul>
-      <form ng-submit="todoList.addTodo()">
-        <input type="text" ng-model="todoList.todoText"  size="30"
-               placeholder="add new todo here">
-        <input class="btn-primary" type="submit" value="add">
-      </form>
-    </div>
-  </body>
+<!DOCTYPE html>
+<html lang="en" ng-app="groceryApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+  <script src="https://unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+  <script src="grocery.js"></script>
+  <link rel="stylesheet" href="item.css">
+  <title>Groceries</title>
+  <h2>Groceries</h2>
+</head>
+<body>
+   
+  <div ng-controller="GroceryAppController as groceryList">
+    <span>{{groceryList.remaining()}} of {{groceryList.items.length}} remaining</span>
+    <a href='#' ng-click="groceryList.archive()">X</a>
+    <ul class="unstyled">
+      <li ng-repeat="item in groceryList.items">
+        <label for="items">
+          <input type="checkbox" ng-model="item.inCart">
+          <span class="done-{{item.inCart}}">{{item.text}}</span>
+        </label>
+      </li>
+    </ul>
+
+    <form ng-submit="groceryList.addItem()">
+      <input type="text" ng-model="groceryList.itemText"  size="30"
+             placeholder="add grocery item here">
+      <input class="btn-primary" type="submit" value="add">
+    </form>
+
+    <!-- <form ng-submit="groceryList.checkout()">
+      <input class="btn-primary" type="submit" value="checkout">
+    </form> -->
+    <a ui-sref="checkout" ui-sref-active="active">Done Page</a>
+
+    <ui-view></ui-view>
+
+  </div>
+</body>
 </html>

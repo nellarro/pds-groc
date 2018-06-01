@@ -1,21 +1,36 @@
-angular.module('todoApp', [])
-  .controller('TodoListController', function() {
-    let todoList = this
-    todoList.todos = [
-      { text:'learn AngularJS', done: true },
-      { text:'build an AngularJS app', done: false }
+
+angular.module('groceryApp', ['ui.router'])
+  .controller('GroceryAppController', function() {
+    let groceryList = this
+    groceryList.items = [
+      { text:'learn AngularJS', inCart: true },
+      { text:'build an AngularJS app', inCart: false }
     ]
  
-    todoList.addTodo = function() {
-      todoList.todos.push({ text: todoList.todoText, done: false })
-      todoList.todoText = ''
+    groceryList.addItem = function() {
+      groceryList.items.push({ text: groceryList.groceryText, inCart: false })
+      groceryList.groceryText = ''
     }
  
-    todoList.remaining = function() {
-      return todoList.todos.filter(todo => !todo.done).length
+    groceryList.remaining = function() {
+      return groceryList.items.filter(item => !item.inCart).length
     }
  
-    todoList.archive = function() {
-     todoList.todos = todoList.todos.filter(todo => !todo.done)
+    groceryList.archive = function() {
+     groceryList.items = groceryList.itemss.filter(item => !item.inCart)
     }
+  })
+  .config(function($stateProvider) {
+    let standardState = {
+      name: 'home',
+      url: '/index',
+      templateUrl: 'index.html'
+    }
+    let checkoutState = {
+      name: 'checkout',
+      url: '/done',
+      templateUrl: 'done.html'
+    }
+    $stateProvider.state(checkoutState)
+    $stateProvider.state(standardState)
   })
