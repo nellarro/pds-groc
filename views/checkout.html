@@ -1,0 +1,13 @@
+
+<div>
+  <div ng-controller="GroceryAppController as groceryList">
+    <h3>Items In Cart</h3>
+    <li ng-repeat="item in groceryList.send()">
+      <label>
+        <span class="done-{{item.inCart}}" contenteditable="true">{{item.text}}</span>
+        <span ng-click="groceryList.delete(item.id)" class='delete'>x</span>
+      </label>
+    </li>
+    <a ui-sref="need" ui-sref-active="active">Back</a>
+  </div>
+</div>
