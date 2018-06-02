@@ -1,6 +1,6 @@
 const app = angular.module('groceryApp', ['ui.router']); 
 
-  // Controller (::State::)
+// Controller (::State::)
 app.controller('GroceryAppController', function() {
     let groceryList = this
     groceryList.items = [
@@ -28,7 +28,7 @@ app.controller('GroceryAppController', function() {
   }
 })
 
-  // Routing
+// Routing
 app.config(function($stateProvider, $urlRouterProvider) {
   let checkoutDone = {
     name: 'checkout',
