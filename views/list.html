@@ -10,7 +10,7 @@
     <ul>
       <li ng-repeat="item in groceryList.items">
         <label>
-          <input type="checkbox" ng-model="item.inCart" />
+          <input type="checkbox" ng-model="item.inCart" /> 
           <span class="done-{{item.inCart}}" contenteditable="true">{{item.text}}</span>
           <span ng-click="groceryList.delete(item.id)">
             <i class="far fa-times-circle delete"></i>

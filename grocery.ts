@@ -1,12 +1,16 @@
 const app = angular.module('groceryApp', ['ui.router']); 
 
-// Controller (::State::)
-app.controller('GroceryAppController', function() {
+// Init State (singleton state)
+app.factory('List', function(){
+  return [
+    { text:'Milk', inCart: true, id: 1 },
+    { text:'Eggs', inCart: false, id: 2 }
+  ];
+})
+// Controller
+app.controller('GroceryAppController', ['$scope', 'List', function($scope, List) {
     let groceryList = this
-    groceryList.items = [
-      { text:'Milk', inCart: true, id: 1 },
-      { text:'Eggs', inCart: false, id: 2 }
-    ]
+    groceryList.items = List;
 
   // Methods
   groceryList.addItem = () => {
@@ -17,6 +21,15 @@ app.controller('GroceryAppController', function() {
     })
     groceryList.itemText = ''
   }
+  groceryList.update = id => {
+    groceryList.items = groceryList.items.map(function(groceries) {
+      if (groceries.id === id) {
+        console.log(groceries.inCart = !groceries.inCart)
+        return groceries
+      }
+      return groceries
+    })
+  }
   groceryList.remaining = () => {
     return groceryList.items.filter(item => !item.inCart).length
   }
@@ -26,7 +39,7 @@ app.controller('GroceryAppController', function() {
   groceryList.send = () => {
     return groceryList.items.filter(groceries => groceries.inCart)
   }
-})
+}])
 
 // Routing
 app.config(function($stateProvider, $urlRouterProvider) {
