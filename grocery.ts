@@ -1,31 +1,23 @@
-var require:any
-require('angular')
-require('@uirouter/angularjs')
-const app = angular.module('groceryApp', ['ui.router'])
+const app = angular.module('groceryApp', ['ui.router']); 
 
 // Init State (singleton state)
 app.factory('List', function(){
-return {
-    data: [
-      { text:'Milk', inCart: true, id: 1 },
-      { text:'Eggs', inCart: false, id: 2 }
-    ],
-    delete: function(id) {
-      this.data = this.data.filter(item => id !== item.id)
-    }
-  }
+  return [
+    { text:'Milk', inCart: true, id: 1 },
+    { text:'Eggs', inCart: false, id: 2 }
+  ];
 })
 // Controller
 app.controller('GroceryAppController', ['$scope', 'List', function($scope, List) {
     let groceryList = this
-    groceryList.items = List.data
+    groceryList.items = List;
 
   // Methods
   groceryList.addItem = () => {
-    groceryList.items.push({
-      text: groceryList.itemText,
-      inCart: false,
-      id: new Date().getTime()
+    groceryList.items.push({ 
+      text: groceryList.itemText, 
+      inCart: false, 
+      id: new Date().getTime() 
     })
     groceryList.itemText = ''
   }
@@ -42,8 +34,7 @@ app.controller('GroceryAppController', ['$scope', 'List', function($scope, List)
     return groceryList.items.filter(item => !item.inCart).length
   }
   groceryList.delete = id => {
-    List.delete(id)
-    groceryList.items = List.data;
+    groceryList.items = groceryList.items.filter(item => item.id !== id)
   }
   groceryList.send = () => {
     return groceryList.items.filter(groceries => groceries.inCart)
@@ -55,12 +46,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
   let checkoutDone = {
     name: 'checkout',
     url: '/checkout',
-    templateUrl: './views/checkout.html'
+    templateUrl: 'views/checkout.html'
   }
   let checkoutNeed = {
     name: 'need',
     url: '/list',
-    templateUrl: './views/list.html'
+    templateUrl: 'views/list.html'
   }
   $stateProvider.state(checkoutDone)
   $stateProvider.state(checkoutNeed)
