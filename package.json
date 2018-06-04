@@ -1,0 +1,19 @@
+{
+  "name": "pds-groc",
+  "version": "1.0.0",
+  "description": "A simple CRUD app that uses Angular 1.x to list groceries",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nellarro/pds-groc.git"
+  },
+  "author": "Jenell Pizarro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nellarro/pds-groc/issues"
+  },
+  "homepage": "https://github.com/nellarro/pds-groc#readme"
+}
