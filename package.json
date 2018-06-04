@@ -4,7 +4,9 @@
   "description": "A simple CRUD app that uses Angular 1.x to list groceries",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -f grocery.js && ./node_modules/browserify/bin/cmd.js grocery.ts -p [ tsify ] > grocery.js",
+    "start": "npm run build && http-server"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/nellarro/pds-groc/issues"
   },
-  "homepage": "https://github.com/nellarro/pds-groc#readme"
+  "homepage": "https://github.com/nellarro/pds-groc#readme",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.18",
+    "angular": "^1.5.11",
+    "browserify": "^16.2.2",
+    "tsify": "^4.0.0",
+    "typescript": "^2.9.1"
+  }
 }
